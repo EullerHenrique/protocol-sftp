@@ -1,6 +1,7 @@
 # Conceito
 
 "
+
 FTP vs SFTP 
 
 Ambos os protocolos permitem que você use um cliente FTP, como o FileZilla, para conectar-se aos servidores de seu website. Para o usuário final (você), 
@@ -203,24 +204,10 @@ Como nenhuma tecnologia é perfeita, o Protocolo de Transferência de Arquivos S
 de gerenciar e validar, podendo ser mais difícil configurá-las corretamente sem o suporte de fornecedores de software. Além disso, os padrões 
 de configuração SFTP podem levar a problemas de compatibilidade entre títulos de software e diferentes fornecedores.
 
+"
 
-O que significa o protocolo SFTP (Secure File Transfer Protocol)?
-Secure File Transfer Protocol (SFTP) é um protocolo de arquivo para transferir arquivos grandes pela web. Baseia-se no File Transfer Protocol
- (FTP) e inclui componentes de segurança Secure Shell (SSH) .
+"
 
-Secure Shell é um componente criptográfico de segurança na Internet. SSH e SFTP foram projetados pela Internet Engineering Task Force (IETF)
- para maior segurança na web. O SFTP transfere a segurança dos arquivos usando SSH e comandos FTP criptografados para evitar a detecção de
- senhas e a exposição de informações confidenciais em texto simples. Como o cliente precisa ser autenticado pelo servidor, o SFTP também
- protege contra ataques man-in-the-middle.
-
-O SFTP pode ser útil em todas as situações em que dados confidenciais precisam ser protegidos. Por exemplo, segredos comerciais podem não
- ser cobertos por nenhuma regra específica de privacidade de dados, mas pode ser devastador que caiam em mãos erradas. Assim, um usuário
- comercial pode usar o SFTP para transmitir arquivos contendo segredos comerciais ou outras informações semelhantes. Um usuário privado
- pode querer criptografar suas comunicações também.
-
-Este termo também é conhecido como protocolo de transferência de arquivos Secure Shell (SSH).
-
-Techopedia explica o protocolo de transferência segura de arquivos (SFTP)
 O SFTP é um protocolo cliente-servidor que pode ser iniciado como uma linha de comando ou por meio de uma interface gráfica do usuário (GUI) .
  No primeiro tipo de configuração, o usuário deve digitar linhas de comando específicas para gerar o protocolo SFTP, geralmente em ambiente Linux.
  A última opção faz uso de um programa que abstrai visualmente o uso do SFTP para usuários finais.
@@ -234,19 +221,9 @@ Um servidor SFTP requer que ambas as partes comunicantes se autentiquem fornecen
  Metade da chave SSH é armazenada no computador dos dois clientes, enquanto a outra metade é carregada no servidor e associada à sua conta
  ( chave pública ). Somente quando o par de chaves SSH corresponder, a autenticação poderá ocorrer.
 
-Para que serve o SFTP?
-O SFTP como sucessor do FTP é usado para muitas situações em que a segurança do arquivo é importante.
+"
 
-Um dos maiores é o cumprimento de padrões como a lei federal de Portabilidade e Acessibilidade de Seguros de Saúde (HIPAA) que rege
- informações de saúde protegidas.
-
-Qualquer empresa, mesmo um terceiro que trabalhe com um hospital ou prestador de serviços de saúde, deve manter sua PHI confidencial,
- e isso inclui durante sua transição através de redes em formato de pacote digital. É por isso que o SFTP pode ser útil para proteger
- esse tipo de dados.
-
-O SFTP é uma das várias opções para proteger esses dados em transferência, para garantir que os hackers não os obtenham e que a empresa
- não execute involuntariamente uma violação da HIPAA se essa lei se aplicar. O SFTP também pode atender a outros padrões de proteção de
- dados.
+"
 
 Alguns usuários que são relativamente novos no SFTP como protocolo perguntam se é preferível usar SFTP ou uma rede privada virtual (VPN) .
  Ambos os sistemas protegerão os dados, mas não são a mesma coisa. O SFTP é um protocolo, enquanto a VPN é um túnel criptografado seguro
@@ -257,7 +234,6 @@ O SFTP também pode ser visto como uma melhoria em relação ao FTPS, que é ape
  ou Secure Sockets Layer (SSL) . O FTPS, de fato, requer configurações complexas de firewall, pois as portas 989 e 990 precisam estar abertas,
  depende de uma autoridade de certificação pública centralizada e é propenso a corrupção de arquivos, pois o padrão é o modo ASCII.
 
-O uso de SSH e SFTP faz parte de uma mudança radical em direção à segurança da Internet à medida que nos aproximamos da Web 3.0 , a web semântica.
-
+"
 
 
