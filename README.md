@@ -120,8 +120,10 @@ Ele se baseia no software File Transfer Protocol (FTP), usa o protocolo SSH (Sec
 autenticado pelo servidor para elementos de segurança aprimorados. O SFTP proporciona a tranquilidade de saber que os dados são protegidos durante 
 a transferência, garantindo que os hackers não sejam capazes de obtê-los.
 
+Existem muitos motivos pelos quais as empresas optam por implementar protocolos de transferência de arquivos seguros em suas estratégias. Abaixo, você confere uma lista dos principais. 
+
 Velocidade
-Os servidores usados ​​com SFTP podem facilmente suportar grandes transferências de arquivos, bem como vários arquivos de uma vez. Por isso, você 
+Os servidores usados com SFTP podem facilmente suportar grandes transferências de arquivos, bem como vários arquivos de uma vez. Por isso, você 
 economizará tempo ao mover dados de um servidor para outro.
 
 Gerenciamento
@@ -144,7 +146,7 @@ Como nenhuma tecnologia é perfeita, o Protocolo de Transferência de Arquivos S
 de gerenciar e validar, podendo ser mais difícil configurá-las corretamente sem o suporte de fornecedores de software. Além disso, os padrões 
 de configuração SFTP podem levar a problemas de compatibilidade entre títulos de software e diferentes fornecedores.
 
-"
+" - Fonte: https://www.hostgator.com.br/blog/o-que-e-protocolo-sftp/
 
 "
 
