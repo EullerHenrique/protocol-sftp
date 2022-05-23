@@ -1,6 +1,118 @@
 # Conceito
 
 "
+FTP vs SFTP 
+
+Ambos os protocolos permitem que você use um cliente FTP, como o FileZilla, para conectar-se aos servidores de seu website. Para o usuário final (você), 
+há praticamente zero diferença de experiência entre FTP e SFTP. Com ambos os protocolos, você será capaz de fazê-lo:
+
+Conecte-se ao seu servidor
+
+Procure todos os arquivos em seu servidor (mesmo os ocultos)
+Carregue arquivos de seu computador local para seu servidor
+Baixe arquivos de seu servidor para seu computador local
+E assim por diante…
+No entanto, existem algumas diferenças fundamentais sob o capô, por isso é importante entender a diferença entre FTP vs SFTP.
+
+Vamos analisar isso com mais detalhes.
+
+O que é FTP?
+FTP é a abreviação de File Transfer Protocol (Protocolo de transferência de arquivos). Usando o modelo cliente/servidor, o FTP suporta a transferência 
+direta de arquivos entre seu cliente FTP escolhido e seu servidor web.
+
+FTP usa dois canais separados para transferir informações: um canal de comando e um canal de dados. Por padrão, ambos os canais não são criptografados, 
+o que significa que atores maliciosos poderiam potencialmente escutar as informações que você está transferindo.
+
+O que é SFTP?
+SFTP é a abreviação de SSH File Transfer Protocol, embora também seja comumente chamado de Secure File Transfer Protocol.
+
+O SFTP oferece a mesma função básica do FTP, mas utiliza o tunelamento e realiza transferências de arquivos sobre SSH, o que é diferente da abordagem 
+cliente-servidor e de transferência direta do FTP.
+
+Então, o que é SSH?
+SSH, abreviação de Secure Shell, é um protocolo criptográfico que oferece acesso seguro a uma máquina (seu servidor, neste caso) através de redes não seguras.
+
+O SFTP usa apenas um canal e permite autenticar seu cliente usando um nome de usuário/senha ou chaves criptográficas SSH.
+
+Qual é a diferença entre FTP vs SFTP, então?
+
+A principal diferença entre FTP vs SFTP é que o SFTP usa um canal seguro para transferir arquivos enquanto o FTP não o faz.
+
+Com SFTP, sua conexão é sempre segura e os dados que se movem entre seu cliente FTP e seu servidor web são criptografados. Isto significa que atores 
+maliciosos não podem sentar-se no meio e interceptar seus dados – tudo que você transfere é sempre criptografado.
+
+Com FTP, você precisa autenticar com um nome de usuário e senha quando se conectar inicialmente. Entretanto, os dados que passam entre seu servidor web 
+e o cliente FTP não são criptografados, o que significa que um ator malicioso poderia teoricamente escutar essas informações.
+
+Isto seria especialmente perigoso se você estivesse transferindo arquivos com informações sensíveis. Por exemplo, com um site WordPress, você poderia 
+estar transferindo o arquivo wp-config.php, que inclui suas credenciais de banco de dados, juntamente com outras configurações críticas.
+
+Se um ator malicioso colocasse suas mãos neste arquivo, eles teriam tudo o que precisam para assumir o seu site WordPress.
+
+Essa é a grande conquista:
+
+Enquanto ambos os protocolos permitem a transferência de arquivos entre seu cliente e servidor, o SFTP é muito mais seguro que o FTP.
+
+"
+
+"
+Se você tem um site na internet, talvez já tenha ouvido falar em FTP, FTPS e SFTP, mas provavelmente nunca parou para pensar o que essas três  
+siglas significam e para o que servem.
+Afinal, boa parte dos empreendedores, mesmo aqueles que criaram seus próprios sites, pode não ter usado esses três  protocolos.
+
+O fato é que vale a pena conhecer esses três  elementos que são muito úteis e, em alguns casos, podem até salvar o seu site se ocorrer um erro de script
+ou invasão. Vamos conhecê-los?
+
+FTP – File Transfer Protocol
+
+Como o nome revela, o FTP é um protocolo de transferência de arquivos. Isso significa que o FTP cria um canal de comunicação entre o seu computador e 
+o servidor que hospeda o seu site para que você possa enviar os dados que quer alocar no seu site ou fazer modificações nele.
+
+Por que isso é tão importante? Bem, vamos imaginar que você tem um site em WordPress, um dos CMS mais famosos e utilizados no mundo. Enquanto edita seu site,
+você, acidentalmente, acaba apagando uma linha de código importante e o seu site sai do ar. Sem acesso ao painel do WordPress fica impossível voltar ao
+editor CSS para corrigir o erro. E agora?
+
+Agora uma das soluções é acessar o FTP! Lá você vai encontrar tudo o que estiver na sua hospedagem, inclusive a pasta com os arquivos do WordPress. 
+Aí é só encontrar o problema, ajeitar o código ou simplesmente apagar a pasta do template e começar de novo.
+
+Se você não estiver trabalhando com um CMS como o WordPress, ter acesso ao FTP também te permite editar e subir direto na hospedagem aplicações e dados
+que você precisa ter por lá.
+
+Claro que isso não significa que você precisa fazer tudo pelo FTP, necessariamente. Mas é um acesso que pode agilizar o processo de transferência de 
+arquivos e resolver problemas como esse exemplo do WordPress.
+
+Quando quiser, você pode acessar o FTP por meio de um endereço e acesso específicos na sua hospedagem ou utilizando um dos vários softwares de FTP que 
+existem no mercado.
+
+FTPS – File Transfer Protocol over SSL
+
+FTPS nada mais é do que um FTP com uma camada extra de segurança SSL. As informações trafegadas entre os dois canais (o seu computador e o servidor) não 
+possuem um recurso de segurança que cuide exclusivamente dessa transmissão.
+
+No FTPS os dados são criptografados usando a tecnologia SSL (Secure Socket Layer). Na prática, isso quer dizer que as informações viram uma espécie de 
+enigma quando saem do seu computador e só são decifradas quando chegam ao servidor.
+
+Desta forma, mesmo que alguém consiga interceptar o tráfego com a intenção de roubar dados, não vai poder ler as informações.
+
+Existem dois tipos de FTPS, o com SSL implícito e explícito. No primeiro, todas as conexões têm que ser, obrigatoriamente, protegidas por criptografia. 
+Qualquer tentativa de transmitir ou receber informações fora do SSL são rejeitadas pelo servidor. No segundo, o cliente (forma como o seu computador é 
+chamado) pode escolher quais informações quer que sejam encriptadas.
+
+Nesse segundo caso, você pode escolher transferir informações que não precisam ser protegidas sem o SSL, e criptografar apenas dados confidenciais, como 
+números de cartão de crédito de clientes e senhas de acesso.
+
+SFTP – Secure File Transfer Protocol
+
+O SFTP assemelha-se ao FTPS pelo fato de ambos oferecerem uma proteção extra aos arquivos e alterações que estão sendo feitas na hospedagem. No entanto, o 
+SFTP utiliza-se da tecnologia SSH (Secure Shell) para autenticar o contato e estabelecer uma conexão segura entre as máquinas.
+
+O SSH é um outro protocolo de rede criptográfico que tem como objetivo fornecer uma conexão segura para troca de dados e é amplamente usado no caso de 
+logins remotos para acesso de sistemas de computadores.
+
+Quando há transmissão com SFTP, as informações não são transmitidas por canais de fluxo direto, mas empacotadas em SSH. O usuário também pode configurar 
+chaves privadas para reforçar a segurança enquanto os pacotes de dados são enviados do seu computador para o servidor. 
+
+"
 SFTP, ou SSH File Transfer Protocol, é uma maneira muito mais segura de mover arquivos. Usando o protocolo SSH,
 ela suporta criptografia e outros métodos de segurança usados para melhor proteger transferências de arquivos.
 
@@ -148,120 +260,4 @@ O SFTP também pode ser visto como uma melhoria em relação ao FTPS, que é ape
 O uso de SSH e SFTP faz parte de uma mudança radical em direção à segurança da Internet à medida que nos aproximamos da Web 3.0 , a web semântica.
 
 
-
-FTP vs SFTP Explicado
-
-Primeiro, vamos falar sobre o que é o mesmo entre FTP vs SFTP.
-
-Ambos os protocolos permitem que você use um cliente FTP, como o FileZilla, para conectar-se aos servidores de seu website. Para o usuário final (você), 
-há praticamente zero diferença de experiência entre FTP e SFTP. Com ambos os protocolos, você será capaz de fazê-lo:
-
-Conecte-se ao seu servidor
-
-Procure todos os arquivos em seu servidor (mesmo os ocultos)
-Carregue arquivos de seu computador local para seu servidor
-Baixe arquivos de seu servidor para seu computador local
-E assim por diante…
-No entanto, existem algumas diferenças fundamentais sob o capô, por isso é importante entender a diferença entre FTP vs SFTP.
-
-Vamos analisar isso com mais detalhes.
-
-O que é FTP?
-FTP é a abreviação de File Transfer Protocol (Protocolo de transferência de arquivos). Usando o modelo cliente/servidor, o FTP suporta a transferência 
-direta de arquivos entre seu cliente FTP escolhido e seu servidor web.
-
-FTP usa dois canais separados para transferir informações: um canal de comando e um canal de dados. Por padrão, ambos os canais não são criptografados, 
-o que significa que atores maliciosos poderiam potencialmente escutar as informações que você está transferindo.
-
-O que é SFTP?
-SFTP é a abreviação de SSH File Transfer Protocol, embora também seja comumente chamado de Secure File Transfer Protocol.
-
-O SFTP oferece a mesma função básica do FTP, mas utiliza o tunelamento e realiza transferências de arquivos sobre SSH, o que é diferente da abordagem 
-cliente-servidor e de transferência direta do FTP.
-
-Então, o que é SSH?
-SSH, abreviação de Secure Shell, é um protocolo criptográfico que oferece acesso seguro a uma máquina (seu servidor, neste caso) através de redes não seguras.
-
-O SFTP usa apenas um canal e permite autenticar seu cliente usando um nome de usuário/senha ou chaves criptográficas SSH.
-
-Qual é a diferença entre FTP vs SFTP, então?
-A principal diferença entre FTP vs SFTP é que o SFTP usa um canal seguro para transferir arquivos enquanto o FTP não o faz.
-
-Com SFTP, sua conexão é sempre segura e os dados que se movem entre seu cliente FTP e seu servidor web são criptografados. Isto significa que atores 
-maliciosos não podem sentar-se no meio e interceptar seus dados – tudo que você transfere é sempre criptografado.
-
-Com FTP, você precisa autenticar com um nome de usuário e senha quando se conectar inicialmente. Entretanto, os dados que passam entre seu servidor web 
-e o cliente FTP não são criptografados, o que significa que um ator malicioso poderia teoricamente escutar essas informações.
-
-Isto seria especialmente perigoso se você estivesse transferindo arquivos com informações sensíveis. Por exemplo, com um site WordPress, você poderia 
-estar transferindo o arquivo wp-config.php, que inclui suas credenciais de banco de dados, juntamente com outras configurações críticas.
-
-Se um ator malicioso colocasse suas mãos neste arquivo, eles teriam tudo o que precisam para assumir o seu site WordPress.
-
-Essa é a grande conquista:
-
-Enquanto ambos os protocolos permitem a transferência de arquivos entre seu cliente e servidor, o SFTP é muito mais seguro que o FTP.
-
-FTP é mais fácil de ser configurado. ✅ SFTP é mais seguro.🔒 Então, qual protocolo você deve escolher? Clique para saber mais sobre as duas opções 👆
-
-Você deve usar FTP ou SFTP?
-Como provavelmente já está claro, você deve sempre usar o SFTP sobre FTP porque o SFTP oferece uma maneira mais segura de conectar-se ao seu servidor 
-e transferir informações.
-
-
-Se você tem um site na internet, talvez já tenha ouvido falar em FTP, FTPS e SFTP, mas provavelmente nunca parou para pensar o que essas três  
-siglas significam e para o que servem.
-Afinal, boa parte dos empreendedores, mesmo aqueles que criaram seus próprios sites, pode não ter usado esses três  protocolos.
-
-O fato é que vale a pena conhecer esses três  elementos que são muito úteis e, em alguns casos, podem até salvar o seu site se ocorrer um erro de script
-ou invasão. Vamos conhecê-los?
-
-FTP – File Transfer Protocol
-
-Como o nome revela, o FTP é um protocolo de transferência de arquivos. Isso significa que o FTP cria um canal de comunicação entre o seu computador e 
-o servidor que hospeda o seu site para que você possa enviar os dados que quer alocar no seu site ou fazer modificações nele.
-
-Por que isso é tão importante? Bem, vamos imaginar que você tem um site em WordPress, um dos CMS mais famosos e utilizados no mundo. Enquanto edita seu site,
-você, acidentalmente, acaba apagando uma linha de código importante e o seu site sai do ar. Sem acesso ao painel do WordPress fica impossível voltar ao
-editor CSS para corrigir o erro. E agora?
-
-Agora uma das soluções é acessar o FTP! Lá você vai encontrar tudo o que estiver na sua hospedagem, inclusive a pasta com os arquivos do WordPress. 
-Aí é só encontrar o problema, ajeitar o código ou simplesmente apagar a pasta do template e começar de novo.
-
-Se você não estiver trabalhando com um CMS como o WordPress, ter acesso ao FTP também te permite editar e subir direto na hospedagem aplicações e dados
-que você precisa ter por lá.
-
-Claro que isso não significa que você precisa fazer tudo pelo FTP, necessariamente. Mas é um acesso que pode agilizar o processo de transferência de 
-arquivos e resolver problemas como esse exemplo do WordPress.
-
-Quando quiser, você pode acessar o FTP por meio de um endereço e acesso específicos na sua hospedagem ou utilizando um dos vários softwares de FTP que 
-existem no mercado.
-
-FTPS – File Transfer Protocol over SSL
-
-FTPS nada mais é do que um FTP com uma camada extra de segurança SSL. As informações trafegadas entre os dois canais (o seu computador e o servidor) não 
-possuem um recurso de segurança que cuide exclusivamente dessa transmissão.
-
-No FTPS os dados são criptografados usando a tecnologia SSL (Secure Socket Layer). Na prática, isso quer dizer que as informações viram uma espécie de 
-enigma quando saem do seu computador e só são decifradas quando chegam ao servidor.
-
-Desta forma, mesmo que alguém consiga interceptar o tráfego com a intenção de roubar dados, não vai poder ler as informações.
-
-Existem dois tipos de FTPS, o com SSL implícito e explícito. No primeiro, todas as conexões têm que ser, obrigatoriamente, protegidas por criptografia. 
-Qualquer tentativa de transmitir ou receber informações fora do SSL são rejeitadas pelo servidor. No segundo, o cliente (forma como o seu computador é 
-chamado) pode escolher quais informações quer que sejam encriptadas.
-
-Nesse segundo caso, você pode escolher transferir informações que não precisam ser protegidas sem o SSL, e criptografar apenas dados confidenciais, como 
-números de cartão de crédito de clientes e senhas de acesso.
-
-SFTP – Secure File Transfer Protocol
-
-O SFTP assemelha-se ao FTPS pelo fato de ambos oferecerem uma proteção extra aos arquivos e alterações que estão sendo feitas na hospedagem. No entanto, o 
-SFTP utiliza-se da tecnologia SSH (Secure Shell) para autenticar o contato e estabelecer uma conexão segura entre as máquinas.
-
-O SSH é um outro protocolo de rede criptográfico que tem como objetivo fornecer uma conexão segura para troca de dados e é amplamente usado no caso de 
-logins remotos para acesso de sistemas de computadores.
-
-Quando há transmissão com SFTP, as informações não são transmitidas por canais de fluxo direto, mas empacotadas em SSH. O usuário também pode configurar 
-chaves privadas para reforçar a segurança enquanto os pacotes de dados são enviados do seu computador para o servidor. 
 
