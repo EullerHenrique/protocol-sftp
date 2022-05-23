@@ -5,7 +5,7 @@
 - [Conceito](#conceito)
 
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
-
+ 
 - [Configuração](#configuração)
 
 - [Endpoints](#endpoints)
@@ -187,5 +187,11 @@ O SFTP também pode ser visto como uma melhoria em relação ao FTPS, que é ape
  depende de uma autoridade de certificação pública centralizada e é propenso a corrupção de arquivos, pois o padrão é o modo ASCII.
 
 " - Fonte: https://www.venafi.com/blog/what-secure-file-transfer-protocol-sftp-and-how-use-it
+
+## Tecnologias Utilizadas
+
+- Spring Boot
+- Docker
+- Atmoz/sftp
 
 
