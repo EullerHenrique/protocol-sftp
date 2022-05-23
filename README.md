@@ -71,7 +71,7 @@ Isso evita qualquer acesso não autorizado na transferência de arquivos.
 O FTP tradicional possui dois canais diferentes para trocar dados, o canal de comando e o canal de dados. 
 Por outro lado, o SFTP possui apenas um canal criptografado no qual os dados são trocados em pacotes criptografados e formatados.
 
-"
+" - Fonte: https://www.hostinger.com.br/tutoriais/como-usar-sftp-ssh-file-transfer-protocol#:~:text=Usando%20o%20protocolo%20SSH%2C%20ela,sendo%20ent%C3%A3o%20o%20protocolo%20preferido.
 
 "
 
