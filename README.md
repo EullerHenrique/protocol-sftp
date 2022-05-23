@@ -51,7 +51,7 @@ logins remotos para acesso de sistemas de computadores.
 Quando há transmissão com SFTP, as informações não são transmitidas por canais de fluxo direto, mas empacotadas em SSH. O usuário também pode configurar 
 chaves privadas para reforçar a segurança enquanto os pacotes de dados são enviados do seu computador para o servidor. 
 
-"
+" - Fonte: https://meunegocio.uol.com.br/blog/ftp-ftps-e-sftp-o-que-sao-e-para-o-que-servem/#:~:text=Como%20o%20nome%20revela%2C%20o,site%20ou%20fazer%20modifica%C3%A7%C3%B5es%20nele.
 
 "
 
