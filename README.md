@@ -57,13 +57,6 @@ Enquanto ambos os protocolos permitem a transferência de arquivos entre seu cli
 "
 
 "
-Se você tem um site na internet, talvez já tenha ouvido falar em FTP, FTPS e SFTP, mas provavelmente nunca parou para pensar o que essas três  
-siglas significam e para o que servem.
-Afinal, boa parte dos empreendedores, mesmo aqueles que criaram seus próprios sites, pode não ter usado esses três  protocolos.
-
-O fato é que vale a pena conhecer esses três  elementos que são muito úteis e, em alguns casos, podem até salvar o seu site se ocorrer um erro de script
-ou invasão. Vamos conhecê-los?
-
 FTP – File Transfer Protocol
 
 Como o nome revela, o FTP é um protocolo de transferência de arquivos. Isso significa que o FTP cria um canal de comunicação entre o seu computador e 
@@ -112,6 +105,8 @@ logins remotos para acesso de sistemas de computadores.
 
 Quando há transmissão com SFTP, as informações não são transmitidas por canais de fluxo direto, mas empacotadas em SSH. O usuário também pode configurar 
 chaves privadas para reforçar a segurança enquanto os pacotes de dados são enviados do seu computador para o servidor. 
+
+"
 
 "
 SFTP, ou SSH File Transfer Protocol, é uma maneira muito mais segura de mover arquivos. Usando o protocolo SSH,
