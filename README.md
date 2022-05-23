@@ -54,8 +54,8 @@ chaves privadas para reforçar a segurança enquanto os pacotes de dados são en
 "
 
 "
-SFTP, ou SSH File Transfer Protocol, é uma maneira muito mais segura de mover arquivos. Usando o protocolo SSH,
-ela suporta criptografia e outros métodos de segurança usados para melhor proteger transferências de arquivos.
+
+SFTP
 
 É o único protocolo de transferência de arquivos que protege contra ataques em qualquer ponto do processo de transferência de dados,
 sendo então o protocolo preferido.
