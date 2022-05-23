@@ -163,10 +163,6 @@ Um servidor SFTP requer que ambas as partes comunicantes se autentiquem fornecen
  Metade da chave SSH é armazenada no computador dos dois clientes, enquanto a outra metade é carregada no servidor e associada à sua conta
  ( chave pública ). Somente quando o par de chaves SSH corresponder, a autenticação poderá ocorrer.
 
-"
-
-"
-
 Alguns usuários que são relativamente novos no SFTP como protocolo perguntam se é preferível usar SFTP ou uma rede privada virtual (VPN) .
  Ambos os sistemas protegerão os dados, mas não são a mesma coisa. O SFTP é um protocolo, enquanto a VPN é um túnel criptografado seguro
  para dados. Pensando nisso, as informações também podem ser enviadas usando o protocolo SFTP por meio de uma VPN, tornando a transferência 
@@ -176,6 +172,6 @@ O SFTP também pode ser visto como uma melhoria em relação ao FTPS, que é ape
  ou Secure Sockets Layer (SSL) . O FTPS, de fato, requer configurações complexas de firewall, pois as portas 989 e 990 precisam estar abertas,
  depende de uma autoridade de certificação pública centralizada e é propenso a corrupção de arquivos, pois o padrão é o modo ASCII.
 
-"
+" - Fonte: https://www.venafi.com/blog/what-secure-file-transfer-protocol-sftp-and-how-use-it
 
 
