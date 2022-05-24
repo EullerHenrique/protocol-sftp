@@ -8,9 +8,6 @@
  
 - [Configuração](#configuração)
 
-- [Endpoints](#endpoints)
-
-- [Diagrama](#diagrama)
 
 ## Conceito
 
@@ -193,5 +190,14 @@ O SFTP também pode ser visto como uma melhoria em relação ao FTPS, que é ape
 - Spring Boot
 - Docker
 - atmoz/sftp
+
+## Configuração
+
+  1. Clone o repósitorio e abra-o em uma IDE (Ex: Intellij)
+  2. Instale o docker (https://www.docker.com/products/docker-desktop/) e abra-o
+  3. Navegue pelo terminal até src/main/resources ou navegue pela IDE até src/main/resources/docker-compose.yaml
+  4. Execute o comando docker-compose up -d ou aperte o botão play localizado ao lado do campo services
+  5. Navegue pela IDE até SftpApplication
+  6. Aperte o botão play localizado ao lado de "public class SftpApplication"
 
 
