@@ -1,19 +1,23 @@
-package com.euller.sftp.service;
+package com.euller.sftp.service.sftp;
 
+import com.euller.sftp.service.thread.ThreadService;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.integration.sftp.session.DefaultSftpSessionFactory;
 import org.springframework.integration.sftp.session.SftpSession;
 import org.springframework.stereotype.Service;
-
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class SftpServiceImp implements SftpService{
 
     //DefaultSftpSessionFactory: Fábrica de sessão Sftp padrão
     private final DefaultSftpSessionFactory sftpSessionFactory;
+    private final ThreadService t;
 
-    public SftpServiceImp() {
+    public SftpServiceImp(ThreadService t) {
+        this.t = t;
+
         sftpSessionFactory = new DefaultSftpSessionFactory();
         sftpSessionFactory.setHost("127.0.0.1");
         sftpSessionFactory.setPort(22);
@@ -21,9 +25,11 @@ public class SftpServiceImp implements SftpService{
         sftpSessionFactory.setPassword("12345");
         //AllowUnknownKeys: Permitir chaves desconhecidas
         sftpSessionFactory.setAllowUnknownKeys(true);
+
     }
 
-    public String download() {
+
+    public ByteArrayResource download(String file) {
 
         //SftpSession: Implementação padrão de SFTP Session. Encapsula uma instância de sessão JSCH.
 
@@ -53,7 +59,7 @@ public class SftpServiceImp implements SftpService{
         //O SSH2 usa um conjunto diferente de algoritmos aprimorados e mais fortes para criptografia e autenticação,
         //como DSA (Algoritmo de Assinatura Digital).
 
-        SftpSession session = sftpSessionFactory.getSession();
+        SftpSession sftpSession = sftpSessionFactory.getSession();
 
         //ByteArrayOutputStream: Essa classe implementa um fluxo de saída no qual os dados são gravados em uma
         //matriz de bytes. O buffer cresce automaticamente à medida que os dados são gravados nele. Os dados podem
@@ -65,9 +71,10 @@ public class SftpServiceImp implements SftpService{
         try {
             //session.read: Lê um arquivo e o armazena
             //Origem: upload/Users.csv Destino: outputStream
-            session.read("upload/Users.csv", outputStream);
-            return outputStream.toString();
-        } catch (IOException e) {
+            //session.read("upload/Users.csv", outputStream);
+            //return outputStream.toString();
+            return (ByteArrayResource) t.create(sftpSession, "upload/"+file, outputStream).get();
+        } catch (ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);
         }
 

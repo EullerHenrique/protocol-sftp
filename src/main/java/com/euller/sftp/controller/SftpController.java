@@ -1,11 +1,12 @@
 package com.euller.sftp.controller;
 
-import com.euller.sftp.service.SftpService;
+import com.euller.sftp.service.sftp.SftpService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/")
@@ -14,9 +15,13 @@ public class SftpController {
 
     private final SftpService sftpService;
 
-    @GetMapping("/download")
-    public ResponseEntity<String> download (){
-        return ResponseEntity.ok().body(sftpService.download());
+    @GetMapping("/download/{f}")
+    public ResponseEntity<ByteArrayResource> download(@PathVariable("f") String f){
+
+        return ResponseEntity
+                .ok()
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(sftpService.download(f));
     }
 
 }
