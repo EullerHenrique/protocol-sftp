@@ -11,25 +11,22 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class SftpServiceImp implements SftpService{
 
-    //DefaultSftpSessionFactory: Fábrica de sessão Sftp padrão
-    private final DefaultSftpSessionFactory sftpSessionFactory;
+    private final SftpSession sftpSession;
+
     private final ThreadService t;
 
     public SftpServiceImp(ThreadService t) {
+
         this.t = t;
 
-        sftpSessionFactory = new DefaultSftpSessionFactory();
-        sftpSessionFactory.setHost("127.0.0.1");
-        sftpSessionFactory.setPort(22);
-        sftpSessionFactory.setUser("euller");
-        sftpSessionFactory.setPassword("12345");
+        //DefaultSftpSessionFactory: Fábrica de sessão Sftp padrão
+        DefaultSftpSessionFactory sftpSessionFactory = new DefaultSftpSessionFactory();
+        sftpSessionFactory.setHost("10.120.11.106");
+        sftpSessionFactory.setPort(2222);
+        sftpSessionFactory.setUser("usermirabr");
+        sftpSessionFactory.setPassword("a.123456");
         //AllowUnknownKeys: Permitir chaves desconhecidas
         sftpSessionFactory.setAllowUnknownKeys(true);
-
-    }
-
-
-    public ByteArrayResource download(String file) {
 
         //SftpSession: Implementação padrão de SFTP Session. Encapsula uma instância de sessão JSCH.
 
@@ -59,7 +56,12 @@ public class SftpServiceImp implements SftpService{
         //O SSH2 usa um conjunto diferente de algoritmos aprimorados e mais fortes para criptografia e autenticação,
         //como DSA (Algoritmo de Assinatura Digital).
 
-        SftpSession sftpSession = sftpSessionFactory.getSession();
+        this.sftpSession = sftpSessionFactory.getSession();
+
+    }
+
+
+    public ByteArrayResource download(String file) {
 
         //ByteArrayOutputStream: Essa classe implementa um fluxo de saída no qual os dados são gravados em uma
         //matriz de bytes. O buffer cresce automaticamente à medida que os dados são gravados nele. Os dados podem
@@ -69,7 +71,7 @@ public class SftpServiceImp implements SftpService{
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         try {
-            return (ByteArrayResource) t.create(sftpSession, "upload/"+file, outputStream).get();
+            return (ByteArrayResource) t.create(this.sftpSession, "upload/"+file, outputStream).get();
         } catch (ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);
         }
