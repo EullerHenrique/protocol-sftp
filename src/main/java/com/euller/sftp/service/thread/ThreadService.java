@@ -43,7 +43,7 @@ public class ThreadService {
     //fila até que uma thread esteja disponível. Se alguma thread for encerrada devido a uma falha durante a
     //execução antes do desligamento, uma nova tomará seu lugar, se necessário, para executar as tasks subsequentes.
     //As threads no pool existirão até que seja explicitamente encerrado.
-    private final ExecutorService es = Executors.newCachedThreadPool();
+    private final ExecutorService es = Executors.newFixedThreadPool(10);
 
     //Um Futuro representa o resultado de uma computação assíncrona. São fornecidos métodos para verificar se a
     //computação está completa, para aguardar sua conclusão e para recuperar o resultado da computação. O resultado só
