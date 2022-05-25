@@ -20,6 +20,11 @@ public class SftpController {
 
         return ResponseEntity
                 .ok()
+                //application/octet-stream: application/octet-stream: Este é o valor padrão para um arquivo binario.
+                //Um tipo de arquivo desconhecido deveria usar este tipo.
+                //Eles tratam-na como se o cabeçalho Content-Disposition fosse definido com o anexo de valor e
+                //propusessem um "Salvar como".É um tipo padrão para todos outros casos.
+                //-> header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename="+f);
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(sftpService.download(f));
     }

@@ -69,10 +69,6 @@ public class SftpServiceImp implements SftpService{
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
         try {
-            //session.read: Lê um arquivo e o armazena
-            //Origem: upload/Users.csv Destino: outputStream
-            //session.read("upload/Users.csv", outputStream);
-            //return outputStream.toString();
             return (ByteArrayResource) t.create(sftpSession, "upload/"+file, outputStream).get();
         } catch (ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);
