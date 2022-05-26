@@ -13,7 +13,7 @@ import java.time.temporal.ChronoUnit;
 class SftpServiceApplicationTests {
 
     @Test
-    public void download() {
+    public void download(){
 
         SftpController controller = new SftpController(new SftpServiceImp(new ThreadService()));
 
@@ -21,7 +21,7 @@ class SftpServiceApplicationTests {
         System.out.println("Início: "+inicio);
 
         for(int i=0; i < 10; i++){
-            System.out.println(controller.download("Users.csv"));
+            System.out.println(controller.download(i+1+"", "Users.cs"));
         }
 
         LocalDateTime fim = LocalDateTime.now();

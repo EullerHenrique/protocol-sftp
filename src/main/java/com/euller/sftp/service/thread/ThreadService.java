@@ -2,7 +2,6 @@ package com.euller.sftp.service.thread;
 
 import org.springframework.integration.sftp.session.SftpSession;
 import org.springframework.stereotype.Service;
-
 import java.io.ByteArrayOutputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -45,21 +44,21 @@ public class ThreadService {
     //As threads no pool existirão até que seja explicitamente encerrado.
     private final ExecutorService es = Executors.newFixedThreadPool(10);
 
-    //Um Futuro representa o resultado de uma computação assíncrona. São fornecidos métodos para verificar se a
+    //Um Future representa o resultado de uma computação assíncrona. São fornecidos métodos para verificar se a
     //computação está completa, para aguardar sua conclusão e para recuperar o resultado da computação. O resultado só
     //pode ser recuperado usando o método get quando a computação for concluída, bloqueando se necessário até que
     //esteja pronto. O cancelamento é realizado pelo método de cancelamento. Métodos adicionais são fornecidos para
     //determinar se a tarefa foi concluída normalmente ou foi cancelada. Uma vez que um cálculo tenha sido concluído,
     //o cálculo não pode ser cancelado. Se você quiser usar um Future para fins de cancelamento, mas não fornecer um
     //resultado utilizável, poderá declarar tipos no formato Future<?> e retornar null como resultado da tarefa subjacente.
-    public Future<?> create(SftpSession sftpSession, String source, ByteArrayOutputStream outputStream) {
+    public Future<?> create(SftpSession sftpSession, String file) {
         //O método submit estende o método base Executor.execute(Runnable) criando e retornando um Future que pode ser
         //usado para cancelar a execução e/ou aguardar a conclusão.
         //Os métodos invokeAny e invokeAll executam as formas mais úteis de execução em massa, executando uma coleção
         //de tarefas e, em seguida, aguardando a conclusão de pelo menos uma, ou todas.
         //(A classe ExecutorCompletionService pode ser usada para escrever variantes personalizadas desses métodos.)
         //A classe Executors fornece métodos de fábrica para os serviços de executor fornecidos neste pacote.
-        return es.submit(new DownloadFile(sftpSession, source, outputStream));
+        return es.submit(new DownloadFile(sftpSession, file));
     }
 
 }

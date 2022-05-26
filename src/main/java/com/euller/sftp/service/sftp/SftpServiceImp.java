@@ -1,11 +1,11 @@
 package com.euller.sftp.service.sftp;
 
 import com.euller.sftp.service.thread.ThreadService;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.integration.sftp.session.DefaultSftpSessionFactory;
 import org.springframework.integration.sftp.session.SftpSession;
 import org.springframework.stereotype.Service;
-import java.io.ByteArrayOutputStream;
+
+import java.io.*;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -21,10 +21,21 @@ public class SftpServiceImp implements SftpService{
 
         //DefaultSftpSessionFactory: Fábrica de sessão Sftp padrão
         DefaultSftpSessionFactory sftpSessionFactory = new DefaultSftpSessionFactory();
+
+        //Local
+
+        //sftpSessionFactory.setHost("127.0.0.1");
+        //sftpSessionFactory.setPort(22);
+        //sftpSessionFactory.setUser("euller");
+        //sftpSessionFactory.setPassword("12345");
+
+        //External
+
         sftpSessionFactory.setHost("10.120.11.106");
         sftpSessionFactory.setPort(2222);
         sftpSessionFactory.setUser("usermirabr");
         sftpSessionFactory.setPassword("a.123456");
+
         //AllowUnknownKeys: Permitir chaves desconhecidas
         sftpSessionFactory.setAllowUnknownKeys(true);
 
@@ -60,19 +71,13 @@ public class SftpServiceImp implements SftpService{
 
     }
 
-
-    public ByteArrayResource download(String file) {
-
-        //ByteArrayOutputStream: Essa classe implementa um fluxo de saída no qual os dados são gravados em uma
-        //matriz de bytes. O buffer cresce automaticamente à medida que os dados são gravados nele. Os dados podem
-        //ser recuperados usando toByteArray() e toString().
-        //Fechar um ByteArrayOutputStream não tem efeito. Os métodos nesta classe podem ser chamados após o fechamento
-        //do fluxo sem gerar uma IOException
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    public Boolean download(String file) {
 
         try {
-            return (ByteArrayResource) t.create(this.sftpSession, "upload/"+file, outputStream).get();
-        } catch (ExecutionException | InterruptedException e) {
+
+            return (Boolean) t.create(this.sftpSession, file).get();
+
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
 

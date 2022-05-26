@@ -1,11 +1,10 @@
 package com.euller.sftp.service.thread;
 
-import org.springframework.core.io.ByteArrayResource;
+import org.apache.commons.io.FileUtils;
+import org.springframework.core.NestedIOException;
 import org.springframework.integration.sftp.session.SftpSession;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.concurrent.Callable;
 
 //Callable: Uma task que retorna um resultado e pode lançar uma exceção.
@@ -14,55 +13,63 @@ import java.util.concurrent.Callable;
 //potencialmente executadas por outro thread.
 //Um Runnable, no entanto, não retorna um resultado e não pode lançar uma exceção verificada.
 //A classe Executors contém métodos utilitários para converter de outros formulários comuns em classes Callable.
-public class DownloadFile implements Callable<ByteArrayResource> {
+public class DownloadFile implements Callable<Boolean> {
 
     private final SftpSession sftpSession;
-    private final String source;
-    private final ByteArrayOutputStream outputStream;
 
-    public DownloadFile(SftpSession sftpSession, String source, ByteArrayOutputStream outputStream){
+    private final String file;
+
+    //ByteArrayOutputStream: Essa classe implementa um fluxo de saída no qual os dados são gravados em uma
+    //matriz de bytes. O buffer cresce automaticamente à medida que os dados são gravados nele. Os dados podem
+    //ser recuperados usando toByteArray() e toString().
+    //Fechar um ByteArrayOutputStream não tem efeito. Os métodos nesta classe podem ser chamados após o fechamento
+    //do fluxo sem gerar uma IOException
+
+    private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
+
+    public DownloadFile(SftpSession sftpSession, String file){
         this.sftpSession = sftpSession;
-        this.source = source;
-        this.outputStream = outputStream;
+        this.file = file;
     }
 
-    public ByteArrayResource download() throws IOException{
+    public Boolean download() throws IOException{
 
         //session.read: Lê um arquivo e o armazena
         //Origem: upload/Users.csv Destino: outputStream
-        sftpSession.read(this.source, this.outputStream);
+        sftpSession.read("upload/"+this.file, outputStream);
 
-        //ByteArrayResource: Implementação da interface Resource para uma determinada matriz de bytes.
-        //Cria um ByteArrayInputStream para a matriz de bytes fornecida.
+        //FileOutputStream:
 
-        //Resource: Interface para um descritor de recurso que abstrai do tipo real de recurso subjacente,
-        //como um arquivo ou recurso de caminho de classe.
-        //Um InputStream pode ser aberto para cada recurso se existir em formato físico, mas um URL ou identificador de
-        //arquivo pode ser retornado apenas para determinados recursos.O comportamento real é específico da implementação.
+        //FileUtils.openOutputStream:
 
-        //ByteArrayInputStream: Um ByteArrayInputStream contém um buffer interno que contém bytes que podem ser lidos
-        //do fluxo. Um contador interno acompanha o próximo byte a ser fornecido pelo método read.
-        //Fechar um ByteArrayInputStream não tem efeito. Os métodos dessa classe podem ser chamados após o fechamento
-        //do fluxo sem gerar uma IOException.
+        String[] s1 = this.file.split("/");
+        String[] s2 = s1[1].split("\\.");
+
+        FileOutputStream fileOutputStream = FileUtils.openOutputStream(new File("src//main//resources//download/" + s2[0]+s1[0]+"."+s2[1]));
+
+        //fileOutputStream.write:
 
         //toByteArray: Cria uma matriz de bytes recém-alocada. Seu tamanho é o tamanho atual desse fluxo de saída e
         //o conteúdo válido do buffer foi copiado para ele.
 
-        return new ByteArrayResource(this.outputStream.toByteArray());
+        fileOutputStream.write(outputStream.toByteArray());
+
+        return true;
 
     }
 
     //Calcula um resultado ou lança uma exceção se não for possível.
     @Override
-    public ByteArrayResource call()  {
+    public Boolean call()  {
 
         try{
             return this.download();
         }
         catch(IOException e){
-            e.printStackTrace();
+            return false;
         }
-        return null;
+
     }
 
 }
