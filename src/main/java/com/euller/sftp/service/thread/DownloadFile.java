@@ -1,7 +1,6 @@
 package com.euller.sftp.service.thread;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.core.NestedIOException;
 import org.springframework.integration.sftp.session.SftpSession;
 
 import java.io.*;
@@ -39,16 +38,27 @@ public class DownloadFile implements Callable<Boolean> {
         //Origem: upload/Users.csv Destino: outputStream
         sftpSession.read("upload/"+this.file, outputStream);
 
-        //FileOutputStream:
+        //FileOutputStream: Um fluxo de saída de arquivo é um fluxo de saída para gravar dados em um arquivo ou em
+        //um FileDescriptor, se um arquivo está disponível ou pode ser criado dependendo da plataforma subjacente.
+        //Algumas plataformas, em particular, permitem que um arquivo seja aberto para gravação por apenas um
+        //FileOutputStream (ou outro objeto de gravação de arquivo) por vez. Em tais situações, os construtores dessa
+        //classe falharão se o arquivo envolvido já estiver aberto.
+        //FileOutputStream destina-se a gravar fluxos de bytes brutos, como dados de imagem. Para escrever fluxos de
+        //caracteres, considere usar FileWriter.
 
-        //FileUtils.openOutputStream:
+        //FileUtils.openOutputStream: Abre um FileOutputStream para o arquivo especificado, verificando e criando
+        //o diretório pai se ele não existir.
+        //No final do método, o fluxo será aberto com sucesso ou uma exceção será lançada.
+        //O diretório pai será criado se não existir. O arquivo será criado se não existir. Uma exceção é lançada se
+        //o objeto de arquivo existir, mas for um diretório. Uma exceção é lançada se o arquivo existir, mas não puder
+        //ser gravado. Uma exceção é lançada se o diretório pai não puder ser criado.
 
         String[] s1 = this.file.split("/");
         String[] s2 = s1[1].split("\\.");
 
         FileOutputStream fileOutputStream = FileUtils.openOutputStream(new File("src//main//resources//download/" + s2[0]+s1[0]+"."+s2[1]));
 
-        //fileOutputStream.write:
+        //fileOutputStream.write: Grava bytes b.length da matriz de bytes especificada neste fluxo de saída de arquivo.
 
         //toByteArray: Cria uma matriz de bytes recém-alocada. Seu tamanho é o tamanho atual desse fluxo de saída e
         //o conteúdo válido do buffer foi copiado para ele.
