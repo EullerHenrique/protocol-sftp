@@ -2,7 +2,8 @@ package com.euller.sftp.service.thread;
 
 import org.springframework.integration.sftp.session.SftpSession;
 import org.springframework.stereotype.Service;
-import java.io.ByteArrayOutputStream;
+
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -51,14 +52,16 @@ public class ThreadService {
     //determinar se a tarefa foi concluída normalmente ou foi cancelada. Uma vez que um cálculo tenha sido concluído,
     //o cálculo não pode ser cancelado. Se você quiser usar um Future para fins de cancelamento, mas não fornecer um
     //resultado utilizável, poderá declarar tipos no formato Future<?> e retornar null como resultado da tarefa subjacente.
-    public Future<?> create(SftpSession sftpSession, String file) {
+    public Future<?> create(String file) {
         //O método submit estende o método base Executor.execute(Runnable) criando e retornando um Future que pode ser
         //usado para cancelar a execução e/ou aguardar a conclusão.
         //Os métodos invokeAny e invokeAll executam as formas mais úteis de execução em massa, executando uma coleção
         //de tarefas e, em seguida, aguardando a conclusão de pelo menos uma, ou todas.
         //(A classe ExecutorCompletionService pode ser usada para escrever variantes personalizadas desses métodos.)
         //A classe Executors fornece métodos de fábrica para os serviços de executor fornecidos neste pacote.
-        return es.submit(new DownloadFile(sftpSession, file));
+        System.out.println("ES -> " + es);
+        return es.submit(new DownloadFile(file));
+
     }
 
 }

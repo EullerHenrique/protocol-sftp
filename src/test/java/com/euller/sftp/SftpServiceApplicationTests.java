@@ -21,7 +21,7 @@ class SftpServiceApplicationTests {
         System.out.println("Início: "+inicio);
 
         for(int i=0; i < 10; i++){
-            System.out.println(controller.download(i+1+"", "Users.cs"));
+            System.out.println(controller.download(i+1+""));
         }
 
         LocalDateTime fim = LocalDateTime.now();
