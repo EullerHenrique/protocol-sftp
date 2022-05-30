@@ -1,9 +1,6 @@
 package com.euller.sftp.service.thread;
 
-import org.springframework.integration.sftp.session.SftpSession;
 import org.springframework.stereotype.Service;
-
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -61,7 +58,7 @@ public class ThreadService {
         //A classe Executors fornece métodos de fábrica para os serviços de executor fornecidos neste pacote.
         System.out.println("ES -> " + es);
         return es.submit(new DownloadFile(file));
-
     }
+
 
 }

@@ -139,17 +139,12 @@ public class DownloadFile implements Callable<Boolean> {
 
     }
 
-    //Calcula um resultado ou lança uma exceção se não for possível.
     @Override
-    public Boolean call()  {
-
-        try{
+    public Boolean call() {
+        try {
             return this.download();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        catch(IOException e){
-            return false;
-        }
-
     }
-
 }
