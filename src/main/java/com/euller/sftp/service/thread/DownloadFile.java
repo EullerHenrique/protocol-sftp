@@ -91,8 +91,8 @@ public class DownloadFile implements Callable<Boolean> {
             throw new IOException(e);
         }
 
-        for(ChannelSftp.LsEntry entry: list){
-
+        for(int i = 0; i < list.size(); i++){
+            ChannelSftp.LsEntry entry = list.get(i);
             try {
 
                 //ByteArrayOutputStream: Essa classe implementa um fluxo de saída no qual os dados são gravados em uma
@@ -129,7 +129,7 @@ public class DownloadFile implements Callable<Boolean> {
 
                 fileOutputStream.write(outputStream.toByteArray());
 
-                System.out.println("src/main/resources/download/" + this.file + "/"+ entry.getFilename() + " salvo");
+                System.out.println(i+1+ " - " + "src/main/resources/download/" + this.file + "/"+ entry.getFilename() + " salvo");
 
             }catch (IOException ignored){
             }

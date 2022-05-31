@@ -1,12 +1,12 @@
 package com.euller.sftp.test;
 
 import com.euller.sftp.controller.SftpController;
-import com.euller.sftp.service.sftp.SftpServiceImp;
-import com.euller.sftp.service.thread.ThreadService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Component;
 
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -19,8 +19,9 @@ public class Test {
 
     private final SftpController sftpController;
 
-    @Bean
-    public  void download(){
+    //Teste de Volume
+    //@Bean
+    public  void testeVolume(){
 
         LocalDateTime inicio = LocalDateTime.now();
         System.out.println("Início: "+inicio);
@@ -66,6 +67,14 @@ public class Test {
            System.out.println("Tempo decorrido: " + hours + ":" + minutes + ":" + secondes);
 
        }
+
+    }
+
+    @Bean
+    //Teste de Manipulação do CSV
+    public void testeManipulacao(){
+
+        sftpController.manipulateCSV(3, 6);
 
     }
 }

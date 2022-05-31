@@ -4,8 +4,6 @@ import com.euller.sftp.service.sftp.SftpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.concurrent.Future;
-
 @RestController
 @RequestMapping("/")
 @RequiredArgsConstructor
@@ -17,6 +15,13 @@ public class SftpController {
     public Boolean download(@PathVariable("d") String d)  {
 
       return sftpService.download(d);
+    }
+
+    @GetMapping("/manipulateCSV/{pci}/{pcf}")
+    public void manipulateCSV(@PathVariable("pci") int pci, @PathVariable("pcf") int pcf)  {
+
+        sftpService.manipulateCSV(pci, pcf);
+
     }
 
 }
