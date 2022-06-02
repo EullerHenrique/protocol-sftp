@@ -1,12 +1,11 @@
 package com.euller.sftp.test;
 
+import com.euller.sftp.controller.CsvController;
 import com.euller.sftp.controller.SftpController;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Component;
 
-import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ import java.util.concurrent.*;
 public class Test {
 
     private final SftpController sftpController;
+    private  final CsvController csvController;
 
-    //Teste de Volume
     //@Bean
     public  void testeVolume(){
 
@@ -60,21 +59,22 @@ public class Test {
            long millis = inicio.until(fim, ChronoUnit.MILLIS);
 
            long hours = TimeUnit.MILLISECONDS.toHours(millis);
-           long minutes = TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(hours) ;
-           long secondes = TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(minutes);
+           millis-=TimeUnit.HOURS.toMillis(hours);
+           long minutes = TimeUnit.MILLISECONDS.toMinutes(millis);
+           millis-=TimeUnit.MINUTES.toMillis(minutes);
+           long secondes = TimeUnit.MILLISECONDS.toSeconds(millis);
+           millis-=TimeUnit.SECONDS.toMillis(secondes);
 
-
-           System.out.println("Tempo decorrido: " + hours + ":" + minutes + ":" + secondes);
+           System.out.println("Tempo decorrido: " + hours + ":" + minutes + ":" + secondes + ":" + millis);
 
        }
 
     }
 
     @Bean
-    //Teste de Manipulação do CSV
     public void testeManipulacao(){
 
-        sftpController.manipulateCSV(3, 6);
+        csvController.manipulateCSV(1, 5);
 
     }
 }

@@ -1,5 +1,6 @@
 package com.euller.sftp.controller;
 
+import com.euller.sftp.service.csv.CsvServiceImp;
 import com.euller.sftp.service.sftp.SftpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +18,5 @@ public class SftpController {
       return sftpService.download(d);
     }
 
-    @GetMapping("/manipulateCSV/{pci}/{pcf}")
-    public void manipulateCSV(@PathVariable("pci") int pci, @PathVariable("pcf") int pcf)  {
-
-        sftpService.manipulateCSV(pci, pcf);
-
-    }
 
 }

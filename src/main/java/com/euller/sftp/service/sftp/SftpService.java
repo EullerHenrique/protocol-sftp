@@ -4,7 +4,6 @@ public interface SftpService {
 
    Boolean download(String file);
 
-   void manipulateCSV(int pci, int pcf);
 
 }
 

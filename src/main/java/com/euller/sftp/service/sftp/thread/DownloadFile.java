@@ -1,4 +1,4 @@
-package com.euller.sftp.service.thread;
+package com.euller.sftp.service.sftp.thread;
 
 import com.jcraft.jsch.ChannelSftp;
 import org.apache.commons.io.FileUtils;
@@ -92,6 +92,7 @@ public class DownloadFile implements Callable<Boolean> {
         }
 
         for(int i = 0; i < list.size(); i++){
+
             ChannelSftp.LsEntry entry = list.get(i);
             try {
 
