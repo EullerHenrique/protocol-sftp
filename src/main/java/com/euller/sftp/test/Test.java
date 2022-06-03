@@ -38,11 +38,19 @@ public class Test {
 
         List<Future<Boolean>> futures;
         try {
+            //invokeAll: Executa as tarefas dadas, retornando uma lista de Futuros com seus status e resultados quando todos
+            //estiverem concluídos. Future.isDone é verdadeiro para cada elemento da lista retornada.
+            //Observe que uma tarefa concluída pode ser encerrada normalmente ou lançando uma exceção.
+            //Os resultados deste método são indefinidos se a coleção especificada for modificada enquanto esta
+            //operação estiver em andamento.
             futures =  executorService.invokeAll(callableTasks);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
+        //allMatch: Retorna true se todos os elementos deste fluxo correspondem ao predicado fornecido.
+        //Pode não avaliar o predicado em todos os elementos se não for necessário para determinar o resultado.
+        //Se o fluxo estiver vazio, true será retornado e o predicado não será avaliado.
         boolean result = futures.stream().allMatch(b ->{
             try {
                 return b.get() == true;
@@ -56,6 +64,8 @@ public class Test {
            LocalDateTime fim = LocalDateTime.now();
            System.out.println("Fim: " + fim);
 
+           //Calcula a quantidade de tempo até outra data-hora em termos da unidade especificada.
+           //Isso calcula a quantidade de tempo entre dois objetos LocalDateTime em termos de um único TemporalUnit.
            long millis = inicio.until(fim, ChronoUnit.MILLIS);
 
            long hours = TimeUnit.MILLISECONDS.toHours(millis);
