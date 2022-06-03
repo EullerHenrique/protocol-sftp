@@ -80,12 +80,11 @@ public class DownloadFile implements Callable<Boolean> {
 
         System.out.println("Init "+this.file);
 
-        //session.read: Lê um arquivo e o armazena
-        //Origem: upload/Users.csv Destino: outputStream
-        //sftpSession.read("upload/"+this.file, outputStream);
-
+        //ChannelSftp.LsEntry: Representa uma entrada de diretório, representando um arquivo ou diretório remoto.
         List<ChannelSftp.LsEntry> list;
         try {
+            //List.of: Retorna uma lista não modificável contendo um número arbitrário de elementos.
+            //stfp.session.list: Insere em uma lista todos os arquivos presentes em um diretório específico
             list = List.of(sftpSession.list("upload/"+this.file));
         } catch (IOException e) {
             throw new IOException(e);
@@ -104,6 +103,9 @@ public class DownloadFile implements Callable<Boolean> {
 
                 ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
+                //session.read: Lê um arquivo e o armazena
+                //Origem: upload/Users.csv Destino: outputStream
+                //sftpSession.read("upload/"+this.file, outputStream);
                 sftpSession.read("upload/"+this.file+"/"+entry.getFilename(), outputStream);
 
                 //FileOutputStream: Um fluxo de saída de arquivo é um fluxo de saída para gravar dados em um arquivo ou em
